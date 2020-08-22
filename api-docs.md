@@ -120,21 +120,39 @@ Response Body: NA
 
 In order to consume the API, you will need to pass the `Authorization` header in the request. The header is generated via the below logic.
 
-You will need to add a Base64 encoded to the `Authorization` header.
+The `Authorization` header consists of `username` and `password` which will be provided by the admins or maintainer of this site. However in order not to pass the username and password in the plain text, you will have to encode the value using Base64 library.
+
+
+###### Base64 Transformation in different lang
 
 For Java, you may use the below line:
 ```
-String encoded = new String(java.util.Base64.getEncoder().encode((username+":"+password).getBytes()));
+String encoded = new String(Base64.getEncoder().encode((username+":"+password).getBytes()));
+String header = "Authorization: Basic "+encoded;
 ```
 
 For Angular, you may use the below line:
 ```javascript
 encoded = btoa(username + ':' + password)
+header = "Authorization: Basic "+encoded
 ```
 
-Once the encoded is generated, then you have to, pass in the Header
+###### Step by Step guide
+
+Here is an example:
+Step 1: Retrieve `username` and `password`
+`username` : `testuser`
+`password` : `dummypassword`
+
+Step 2: Encode the string in the following format `username:password` 
 ```
-Authorization: Basic VGVhbUE6dGVhbWFwYXNzd29yZA==
+String encoded = new String(Base64.getEncoder().encode((username+":"+password).getBytes()));
+```
+The value of the encoded will be `dGVzdHVzZXI6ZHVtbXlwYXNzd29yZA==` 
+
+Step 3: Now you may use the encoded value in Authorization header
+```
+Authorization:Basic dGVzdHVzZXI6ZHVtbXlwYXNzd29yZA==
 ```
 
 CURL request will look like:

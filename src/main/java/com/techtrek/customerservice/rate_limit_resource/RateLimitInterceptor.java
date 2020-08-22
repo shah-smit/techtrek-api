@@ -1,6 +1,5 @@
 package com.techtrek.customerservice.rate_limit_resource;
 
-import com.techtrek.customerservice.rate_limit_resource.PricingPlanService;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.ConsumptionProbe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class RateLimitInterceptor implements HandlerInterceptor {
 
-    private static final String HEADER_API_KEY = "X-api-key";
+    private static final String AUTHORIZATION = "Authorization";
     private static final String HEADER_LIMIT_REMAINING = "X-Rate-Limit-Remaining";
     private static final String HEADER_RETRY_AFTER = "X-Rate-Limit-Retry-After-Seconds";
 
@@ -25,10 +24,10 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String apiKey = request.getHeader(HEADER_API_KEY);
+        String apiKey = request.getHeader(AUTHORIZATION);
 
         if (apiKey == null || apiKey.isEmpty()) {
-            response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: " + HEADER_API_KEY);
+            response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: " + AUTHORIZATION);
             return false;
         }
 
