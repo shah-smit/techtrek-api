@@ -151,3 +151,8 @@ const headers = new HttpHeaders({
             authorization : 'Basic ' + btoa(username + ':' + password)
         });
 ```
+
+
+#### Useful Links
+
+- [Angular Documentation](https://spring.io/guides/tutorials/spring-security-and-angular-js/)
