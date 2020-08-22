@@ -1,6 +1,5 @@
 package com.techtrek.customerservice.participant;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
