@@ -103,12 +103,12 @@ Description: It add transaction into the DB
 
 Request Body:
 ```json5
-{
-  "customerId": "string",
-  "toAccountId": "string",
-  "fromAccountId": "string",
-  "amount": 0
-}
+    {
+      "customerId": "string",
+      "toAccountId": "string",
+      "fromAccountId": "string",
+      "amount": 0
+    }
 ```
 
 Response Status: 201

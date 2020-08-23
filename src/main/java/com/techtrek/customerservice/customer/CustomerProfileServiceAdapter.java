@@ -9,7 +9,7 @@ public class CustomerProfileServiceAdapter implements CustomerProfileService {
 
     @Override
     public Customer getCustomer(String id) {
-        return customers.stream().filter(customer -> customer.getFirstName().equals(id)).findAny().orElseThrow();
+        return customers.stream().filter(customer -> customer.getCustomerId().equals(id)).findAny().orElseThrow();
     }
 
     @Override
