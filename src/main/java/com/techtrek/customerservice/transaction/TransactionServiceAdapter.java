@@ -1,23 +1,25 @@
 package com.techtrek.customerservice.transaction;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 public class TransactionServiceAdapter implements TransactionService{
 
-    List<Transaction> transactions = new ArrayList<>();
+    private final TransactionCommandRepo commandRepo;
+    private final TransactionQueryRepo queryRepo;
 
     @Override
     public void addTransaction(Transaction transaction) {
         transaction.setLocalDateTime();
         transaction.setTransactionId();
 
-        transactions.add(transaction);
+        commandRepo.addTransaction(transaction);
     }
 
     @Override
     public List<Transaction> getTransaction(String customerId) {
-        return transactions.stream().filter(transaction -> transaction.getCustomerId().equals(customerId)).collect(Collectors.toList());
+        return queryRepo.getCustomerTransaction(customerId);
     }
 }

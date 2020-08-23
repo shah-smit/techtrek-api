@@ -6,9 +6,10 @@ import com.techtrek.customerservice.participant.ParticipantService;
 import com.techtrek.customerservice.participant.ParticipantServiceAdapter;
 import com.techtrek.customerservice.participant.PasswordService;
 import com.techtrek.customerservice.participant_adapter.PasswordAdapter;
+import com.techtrek.customerservice.transaction.TransactionCommandRepo;
+import com.techtrek.customerservice.transaction.TransactionQueryRepo;
 import com.techtrek.customerservice.transaction.TransactionService;
 import com.techtrek.customerservice.transaction.TransactionServiceAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,8 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AutoBeanConfig {
 
     @Bean
-    public TransactionService getTransactionService(){
-        return new TransactionServiceAdapter();
+    public TransactionService getTransactionService(TransactionQueryRepo queryRepo, TransactionCommandRepo transactionCommandRepo){
+        return new TransactionServiceAdapter(transactionCommandRepo, queryRepo);
     }
 
     @Bean
