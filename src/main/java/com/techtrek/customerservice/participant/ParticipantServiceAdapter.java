@@ -1,26 +1,25 @@
 package com.techtrek.customerservice.participant;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ParticipantServiceAdapter implements ParticipantService {
 
-    private List<Participant> participantList = new ArrayList<>();
     private final PasswordService passwordService;
+    private final ParticipantCommandRepo participantCommandRepo;
+    private final ParticipantQueryRepo participantQueryRepo;
 
     @Override
     public void addParticipant(Participant participant) {
         participant.setPassword(passwordService.encode(participant.getPassword()));
         participant.setActive(true);
-        participantList.add(participant);
+        participantCommandRepo.addParticipant(participant);
     }
 
     @Override
     public Optional<Participant> getParticipant(String username) {
-        return participantList.stream().filter(participant -> participant.getUsername().equals(username)).findAny();
+        return Optional.of(participantQueryRepo.getParticipant(username));
     }
 }
