@@ -1,7 +1,9 @@
 package com.techtrek.customerservice.config;
 
+import com.techtrek.customerservice.customer.CustomerCommandRepo;
 import com.techtrek.customerservice.customer.CustomerProfileService;
 import com.techtrek.customerservice.customer.CustomerProfileServiceAdapter;
+import com.techtrek.customerservice.customer.CustomerQueryRepo;
 import com.techtrek.customerservice.participant.*;
 import com.techtrek.customerservice.participant_adapter.PasswordAdapter;
 import com.techtrek.customerservice.transaction.TransactionCommandRepo;
@@ -21,8 +23,8 @@ public class AutoBeanConfig {
     }
 
     @Bean
-    public CustomerProfileService getCustomerProfileService(){
-        return new CustomerProfileServiceAdapter();
+    public CustomerProfileService getCustomerProfileService(CustomerQueryRepo customerQueryRepo, CustomerCommandRepo customerCommandRepo){
+        return new CustomerProfileServiceAdapter(customerCommandRepo,customerQueryRepo);
     }
 
     @Bean
