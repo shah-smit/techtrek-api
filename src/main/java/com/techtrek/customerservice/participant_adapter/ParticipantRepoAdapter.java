@@ -19,7 +19,7 @@ public class ParticipantRepoAdapter implements ParticipantCommandRepo, Participa
 
     @Override
     public Participant getParticipant(String username) {
-        return mapToParticipant(participantRepository.findById(username).orElseThrow());
+        return mapToParticipant(participantRepository.findById(username).get());
     }
 
     private ParticipantEntity mapToParticipantEntity(Participant participant){
