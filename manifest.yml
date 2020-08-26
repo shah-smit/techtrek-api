@@ -2,6 +2,6 @@ applications:
   - name: techtrek2020
     buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.16
     path: target/customerservice-1.0.0.jar
-    memory: 1g
+    memory: 2g
     env:
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
