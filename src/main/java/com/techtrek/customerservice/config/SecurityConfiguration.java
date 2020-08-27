@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,9 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index" ,"/css/*", "/js/*").permitAll()
-                .antMatchers("/student/**").hasAnyRole(ApplicationUserRole.PARTICIPANT.name(), ApplicationUserRole.ADMIN.name())
-                .antMatchers("/transaction/**").hasAnyRole(ApplicationUserRole.PARTICIPANT.name(), ApplicationUserRole.ADMIN.name())
-                .antMatchers("/participant/**").hasRole(ApplicationUserRole.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

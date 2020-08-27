@@ -10,7 +10,7 @@ import static com.techtrek.customerservice.config.user_security.ApplicationUserP
 
 public enum ApplicationUserRole {
     PARTICIPANT(Sets.newHashSet(CUSTOMER_READ,CUSTOMER_WRITE, TRANSACTION_READ, TRANSACTION_WRITE)),
-    ADMIN(Sets.newHashSet(CUSTOMER_READ,CUSTOMER_WRITE, TRANSACTION_READ, TRANSACTION_WRITE, PARTICIPANT_READ, PARTICIPANT_WRITE));
+    ADMIN(Sets.newHashSet(CUSTOMER_READ, TRANSACTION_READ, PARTICIPANT_READ, PARTICIPANT_WRITE));
 
     private final Set<ApplicationUserPermission> permissions;
 
