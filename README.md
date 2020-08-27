@@ -1,6 +1,10 @@
+# Tech Trek API
+
+![Tech Trek API with embedded db](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API%20with%20embedded%20db/badge.svg)
 
 
-Ref:
+
+###### Ref:
 
 - `scp -i awskeys.pem customerservice-1.0.0.jar ec2-user@ec2-18-141-233-93.ap-southeast-1.compute.amazonaws.com:~/`
 
