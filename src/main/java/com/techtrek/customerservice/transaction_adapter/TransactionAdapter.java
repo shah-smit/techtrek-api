@@ -4,6 +4,8 @@ import com.techtrek.customerservice.transaction.Transaction;
 import com.techtrek.customerservice.transaction.TransactionCommandRepo;
 import com.techtrek.customerservice.transaction.TransactionQueryRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,7 +27,8 @@ public class TransactionAdapter implements TransactionCommandRepo, TransactionQu
         List<TransactionEntity> transactionEntities = transactionRepository.findAll();
 
         return transactionEntities.stream()
-                .filter(transactionEntity -> transactionEntity.getCustomerId().equals(customerId))
+                .filter(transactionEntity ->
+                        transactionEntity.getCustomerId().equals(customerId))
                 .map(this::mapToTransaction)
                 .collect(Collectors.toList());
     }
@@ -42,6 +45,8 @@ public class TransactionAdapter implements TransactionCommandRepo, TransactionQu
     }
 
     private TransactionEntity mapToTransactionEntity(Transaction transaction){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         TransactionEntity transactionEntity = new TransactionEntity();
         transactionEntity.setAmount(transaction.getAmount());
         transactionEntity.setFromAccountId(transaction.getFromAccountId());
@@ -49,6 +54,7 @@ public class TransactionAdapter implements TransactionCommandRepo, TransactionQu
         transactionEntity.setTransactionId(transaction.getTransactionId());
         transactionEntity.setCustomerId(transaction.getCustomerId());
         transactionEntity.setLocalDateTime(transaction.getLocalDateTime());
+        transactionEntity.setAuthenticationId(authentication.getName());
         return transactionEntity;
     }
 }

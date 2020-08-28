@@ -13,7 +13,7 @@ public class CustomerQueryAdapter implements CustomerQueryRepo {
 
     @Override
     public Customer getCustomer(String customerId) {
-        return mapToCustomer(customerRepository.findById(customerId).get());
+        return customerRepository.findById(customerId).map(this::mapToCustomer).orElseThrow();
     }
 
     private Customer mapToCustomer(CustomerProfileEntity customerProfileEntity) {

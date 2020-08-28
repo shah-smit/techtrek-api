@@ -3,6 +3,8 @@ package com.techtrek.customerservice.customer_adapter;
 import com.techtrek.customerservice.customer.Customer;
 import com.techtrek.customerservice.customer.CustomerCommandRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,6 +24,8 @@ public class CustomerCommandAdapter implements CustomerCommandRepo {
     }
 
     private CustomerProfileEntity mapToCustomerProfileEntity(Customer customer) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         CustomerProfileEntity customerProfileEntity = new CustomerProfileEntity();
         customerProfileEntity.setCustomerId(customer.getCustomerId());
         customerProfileEntity.setAddress(customer.getAddress());
@@ -30,6 +34,7 @@ public class CustomerCommandAdapter implements CustomerCommandRepo {
         customerProfileEntity.setFullName(customer.getFullName());
         customerProfileEntity.setFirstName(customer.getFirstName());
         customerProfileEntity.setLastName(customer.getLastName());
+        customerProfileEntity.setAuthenticationId(authentication.getName());
         return customerProfileEntity;
     }
 

@@ -22,6 +22,6 @@ public class CustomerProfileEntity {
     private String address;
     private String joinedDate;
     private String dateOfBirth;
-    //The person who added the Customer.
-    private String adminId;
+    //Who added the customer
+    private String authenticationId;
 }

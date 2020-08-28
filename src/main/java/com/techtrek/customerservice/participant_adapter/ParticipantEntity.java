@@ -18,4 +18,6 @@ public class ParticipantEntity {
     private String username;
     private String password;
     private boolean isActive;
+    //Who added the participant
+    private String authenticationId;
 }

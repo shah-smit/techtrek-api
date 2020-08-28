@@ -17,6 +17,8 @@ public class Transaction {
     private String fromAccountId;
     private double amount;
     private LocalDateTime localDateTime;
+    //Who added the Transaction
+    private String authenticationId;
 
     public void setLocalDateTime(){
         this.localDateTime = LocalDateTime.now();

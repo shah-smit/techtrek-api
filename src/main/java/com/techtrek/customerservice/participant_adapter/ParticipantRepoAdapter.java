@@ -4,7 +4,11 @@ import com.techtrek.customerservice.participant.Participant;
 import com.techtrek.customerservice.participant.ParticipantCommandRepo;
 import com.techtrek.customerservice.participant.ParticipantQueryRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -19,14 +23,25 @@ public class ParticipantRepoAdapter implements ParticipantCommandRepo, Participa
 
     @Override
     public Participant getParticipant(String username) {
-        return mapToParticipant(participantRepository.findById(username).get());
+
+        Optional<ParticipantEntity> participantEntity = participantRepository.findById(username);
+
+        if(participantEntity.isPresent()){
+            return mapToParticipant(participantEntity.get());
+        }
+
+        return participantEntity.map(this::mapToParticipant)
+                .orElseThrow(() -> new RuntimeException("Participant Not Found"));
     }
 
     private ParticipantEntity mapToParticipantEntity(Participant participant){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         ParticipantEntity participantEntity = new ParticipantEntity();
         participantEntity.setUsername(participant.getUsername());
         participantEntity.setPassword(participant.getPassword());
         participantEntity.setActive(participant.isActive());
+        participantEntity.setAuthenticationId(authentication.getName());
         return participantEntity;
     }
 
