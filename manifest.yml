@@ -7,5 +7,3 @@ applications:
     env:
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
       SPRING_PROFILES_ACTIVE: sqlserver
-      ADMIN_USERNAME: super_admin
-      ADMIN_PASSWORD: $2#mTtmt
