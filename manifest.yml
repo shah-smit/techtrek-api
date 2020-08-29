@@ -1,5 +1,5 @@
 applications:
-  - name: techtrek2020
+  - name: techtrekapi
     buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.16
     path: target/customerservice-1.0.0.jar
     memory: 1g
