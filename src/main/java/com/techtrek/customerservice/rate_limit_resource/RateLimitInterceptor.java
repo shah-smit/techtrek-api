@@ -2,6 +2,7 @@ package com.techtrek.customerservice.rate_limit_resource;
 
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.ConsumptionProbe;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,7 +11,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 
+@Slf4j
 @Component
 public class RateLimitInterceptor implements HandlerInterceptor {
 
@@ -23,7 +26,15 @@ public class RateLimitInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        Enumeration<String> headerNames = request.getHeaderNames();
+        StringBuilder stringBuilder = new StringBuilder();
+        if (headerNames != null) {
+            while (headerNames.hasMoreElements()) {
+                String headerName = headerNames.nextElement();
+                stringBuilder.append(" ["+headerName+"]="+request.getHeader(headerName));
+            }
+        }
+        log.info("Request Headers {}", stringBuilder);
         String apiKey = request.getHeader(AUTHORIZATION);
 
         if (apiKey == null || apiKey.isEmpty()) {
