@@ -1,7 +1,6 @@
 # Tech Trek API
 
-![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API%20with%20embedded%20db/badge.svg)
-
+![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API/badge.svg)
 
 
 ###### Ref:
