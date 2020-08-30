@@ -17,7 +17,6 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addInterceptor(interceptor)
                 .addPathPatterns("/customer/**")
                 .addPathPatterns("/transaction/**")
-                .addPathPatterns("/participant/**")
-                .addPathPatterns("/area/**");
+                .addPathPatterns("/participant/**");
     }
 }

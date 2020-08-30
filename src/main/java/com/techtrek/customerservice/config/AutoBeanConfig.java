@@ -1,5 +1,6 @@
 package com.techtrek.customerservice.config;
 
+import com.techtrek.customerservice.config.user_security.ApplicationUserServiceAdapter;
 import com.techtrek.customerservice.customer.CustomerCommandRepo;
 import com.techtrek.customerservice.customer.CustomerProfileService;
 import com.techtrek.customerservice.customer.CustomerProfileServiceAdapter;
@@ -12,6 +13,8 @@ import com.techtrek.customerservice.transaction.TransactionService;
 import com.techtrek.customerservice.transaction.TransactionServiceAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -35,5 +38,18 @@ public class AutoBeanConfig {
     @Bean
     public ParticipantService getParticipantService(PasswordService passwordService, ParticipantCommandRepo participantCommandRepo, ParticipantQueryRepo participantQueryRepo){
         return new ParticipantServiceAdapter(passwordService, participantCommandRepo, participantQueryRepo);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
+
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider(ApplicationUserServiceAdapter applicationUserServiceAdapter, PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder);
+        provider.setUserDetailsService(applicationUserServiceAdapter);
+        return provider;
     }
 }
