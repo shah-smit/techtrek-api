@@ -145,9 +145,9 @@
                     <testMode>EXPLICIT</testMode>
                     <baseClassMappings>
                         <baseClassMapping>
-                            <contractPackageRegex>.*math.*</contractPackageRegex>
+                            <contractPackageRegex>.*mathresource.*</contractPackageRegex>
                             <baseClassFQN>
-
+                                com.techtrek.customerservice.math_resource.MathResourceBaseContract
                             </baseClassFQN>
                         </baseClassMapping>
                     </baseClassMappings>
