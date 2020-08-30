@@ -1,5 +1,6 @@
 package com.techtrek.customerservice.transaction_adapter;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 @ToString
+@EqualsAndHashCode
 public class TransactionEntity {
     @Id
     private String transactionId;

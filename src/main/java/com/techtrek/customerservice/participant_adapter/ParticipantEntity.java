@@ -1,5 +1,6 @@
 package com.techtrek.customerservice.participant_adapter;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @ToString
+@EqualsAndHashCode
 public class ParticipantEntity {
     @Id
     private String username;

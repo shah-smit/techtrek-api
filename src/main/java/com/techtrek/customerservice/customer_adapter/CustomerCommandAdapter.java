@@ -20,7 +20,7 @@ public class CustomerCommandAdapter implements CustomerCommandRepo {
 
     @Override
     public void updateCustomer(String customerId, Customer customer) {
-        customerRepository.save(mapToCustomerProfileEntity(customer));
+        throw new RuntimeException("Method Not Implemented");
     }
 
     private CustomerProfileEntity mapToCustomerProfileEntity(Customer customer) {
