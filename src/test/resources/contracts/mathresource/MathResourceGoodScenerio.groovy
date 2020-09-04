@@ -9,7 +9,6 @@ Contract.make {
         url('/area/rectangle/10/11')
         headers {
             contentType(applicationJson())
-            header 'Authorization': 'Basic ZHVtbXlfdXNlcm5hbWU6ZHVtbXlfcGFzc3dvcmQ='
         }
     }
     response {
