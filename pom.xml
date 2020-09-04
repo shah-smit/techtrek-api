@@ -150,6 +150,12 @@
                                 com.techtrek.customerservice.math_resource.MathResourceBaseContract
                             </baseClassFQN>
                         </baseClassMapping>
+                        <baseClassMapping>
+                            <contractPackageRegex>.*participant.*</contractPackageRegex>
+                            <baseClassFQN>
+                                com.techtrek.customerservice.participant_resource.ParticipantControllerBaseTest
+                            </baseClassFQN>
+                        </baseClassMapping>
                     </baseClassMappings>
                 </configuration>
                 <executions>
