@@ -25,3 +25,7 @@ CREATE TABLE participant_entity (
         is_active tinyint default 1,
         authentication_id varchar(255)
 );
+
+delete from customer_profile_entity;
+delete from transaction_entity;
+delete from participant_entity;
