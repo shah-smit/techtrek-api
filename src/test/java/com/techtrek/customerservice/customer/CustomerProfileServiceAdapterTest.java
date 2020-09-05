@@ -8,6 +8,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -37,5 +40,12 @@ public class CustomerProfileServiceAdapterTest {
         customerProfileServiceAdapter.updateCustomer(customer.getCustomerId(), customer);
 
         Mockito.verify(customerCommandRepo, times(1)).updateCustomer(eq(customer.getCustomerId()), eq(customer));
+    }
+
+    @Test
+    public void testShouldGetCustomersWithEmptyList(){
+        List<Customer> customerList = customerProfileServiceAdapter.getCustomer();
+
+        assertEquals(0, customerList.size());
     }
 }

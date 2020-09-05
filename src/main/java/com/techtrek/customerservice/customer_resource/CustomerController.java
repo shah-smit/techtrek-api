@@ -16,12 +16,6 @@ public class CustomerController {
 
     private CustomerProfileService customerProfileService;
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('customer:read:all')")
-    public List<Customer> getCustomers() {
-        return customerProfileService.getCustomer();
-    }
-
     @GetMapping("/{customerId}")
     @PreAuthorize("hasAuthority('customer:read')")
     public Customer getCustomer(@PathVariable String customerId) {
@@ -33,11 +27,5 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('customer:write')")
     public void addCustomer(@RequestBody Customer customer) {
         customerProfileService.addCustomer(customer);
-    }
-
-    @PutMapping("/{customerId}")
-    @PreAuthorize("hasAuthority('customer:write')")
-    public void updateCustomer(@PathVariable String customerId, @RequestBody Customer customer) {
-        customerProfileService.updateCustomer(customerId, customer);
     }
 }
