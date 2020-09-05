@@ -10,7 +10,6 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class Transaction {
     private String transactionId;
     private String customerId;
