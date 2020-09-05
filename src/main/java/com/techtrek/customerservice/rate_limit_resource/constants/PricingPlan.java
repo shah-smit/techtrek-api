@@ -18,10 +18,6 @@ public enum PricingPlan implements Limit {
     };
 
     public static PricingPlan resolvePlanFromApiKey(String apiKey) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        log.info("CurrentPrincipal Name {}", currentPrincipalName);
-
         return FREE;
     }
 }
