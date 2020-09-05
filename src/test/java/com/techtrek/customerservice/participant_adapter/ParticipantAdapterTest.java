@@ -14,6 +14,8 @@ import static com.techtrek.customerservice.test_data_provider.CustomerTestDataPr
 import static com.techtrek.customerservice.test_data_provider.ParticipantTestDataProvider.buildParticipant;
 import static com.techtrek.customerservice.test_data_provider.ParticipantTestDataProvider.buildParticipantEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -51,5 +53,15 @@ public class ParticipantAdapterTest {
 
         verify(participantRepository, times(1)).findById(participant.getUsername());
         assertEquals(participant, participant1);
+    }
+
+    @Test
+    public void testShouldReturnRuntimeException(){
+        when(participantRepository.findById(anyString())).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> participantRepoAdapter.getParticipant("mockuser"));
+
+        assertNotNull(exception);
+        assertEquals("Participant Not Found", exception.getMessage());
     }
 }
