@@ -135,6 +135,24 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>io.github.handofgod94</groupId>
+                <artifactId>jacoco-cov-badge-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-badge</id>
+                        <!-- Note: Make sure in this phase jacoco csv report available -->
+                        <phase>post-site</phase>
+                        <configuration>
+                            <!-- Optional. Check wiki for more info on config parameters -->
+                        </configuration>
+                        <goals>
+                            <goal>badge</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <version>2.1.1.RELEASE</version>
