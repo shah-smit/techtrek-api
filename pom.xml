@@ -151,6 +151,12 @@
                             </baseClassFQN>
                         </baseClassMapping>
                         <baseClassMapping>
+                            <contractPackageRegex>.*userrole.*</contractPackageRegex>
+                            <baseClassFQN>
+                                com.techtrek.customerservice.role_participant_resource.ParticipantRoleBaseContract
+                            </baseClassFQN>
+                        </baseClassMapping>
+                        <baseClassMapping>
                             <contractPackageRegex>.*participant.*</contractPackageRegex>
                             <baseClassFQN>
                                 com.techtrek.customerservice.participant_resource.ParticipantControllerBaseTest
