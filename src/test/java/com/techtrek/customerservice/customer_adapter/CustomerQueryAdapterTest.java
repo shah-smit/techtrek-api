@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class CustomerQueryAdapterTest {
     @InjectMocks
     private CustomerQueryAdapter customerQueryAdapter;
@@ -25,12 +26,20 @@ public class CustomerQueryAdapterTest {
 
     @Test
     public void testShouldReturnCustomerWhenCorrectCustomerIdPassed(){
+        Customer customer = buildCustomer();
         when(customerRepository.findById(eq("Smit")))
                 .thenReturn(Optional.of(buildCustomerProfileEntity()));
 
-        Customer customer = customerQueryAdapter.getCustomer("Smit");
+        Customer customer1 = customerQueryAdapter.getCustomer("Smit");
 
-        assertNotNull(customer);
-        assertEquals(buildCustomer(), customer);
+        assertNotNull(customer1);
+
+        assertEquals(customer.getAddress(), customer1.getAddress());
+        assertEquals(customer.getCustomerId(), customer1.getCustomerId());
+        assertEquals(customer.getDateOfBirth(), customer1.getDateOfBirth());
+        assertEquals(customer.getFirstName(), customer1.getFirstName());
+        assertEquals(customer.getLastName(), customer1.getLastName());
+        assertEquals(customer.getJoinedDate(), customer1.getJoinedDate());
+        assertEquals(customer.getFullName(), customer1.getFullName());
     }
 }
