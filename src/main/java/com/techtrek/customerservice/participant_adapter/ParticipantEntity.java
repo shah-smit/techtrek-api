@@ -13,8 +13,6 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table
-@ToString
-@EqualsAndHashCode
 public class ParticipantEntity {
     @Id
     private String username;
@@ -22,4 +20,17 @@ public class ParticipantEntity {
     private boolean isActive;
     //Who added the participant
     private String authenticationId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ParticipantEntity that = (ParticipantEntity) o;
+
+        if (isActive != that.isActive) return false;
+        if (!username.equals(that.username)) return false;
+        if (!password.equals(that.password)) return false;
+        return authenticationId.equals(that.authenticationId);
+    }
 }

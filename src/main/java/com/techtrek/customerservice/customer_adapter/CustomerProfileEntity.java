@@ -13,8 +13,6 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table
-@ToString
-@EqualsAndHashCode
 public class CustomerProfileEntity {
     @Id
     private String customerId;
@@ -26,4 +24,21 @@ public class CustomerProfileEntity {
     private String dateOfBirth;
     //Who added the customer
     private String authenticationId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CustomerProfileEntity that = (CustomerProfileEntity) o;
+
+        if (!customerId.equals(that.customerId)) return false;
+        if (!fullName.equals(that.fullName)) return false;
+        if (!firstName.equals(that.firstName)) return false;
+        if (!lastName.equals(that.lastName)) return false;
+        if (!address.equals(that.address)) return false;
+        if (!joinedDate.equals(that.joinedDate)) return false;
+        if (!dateOfBirth.equals(that.dateOfBirth)) return false;
+        return authenticationId.equals(that.authenticationId);
+    }
 }
