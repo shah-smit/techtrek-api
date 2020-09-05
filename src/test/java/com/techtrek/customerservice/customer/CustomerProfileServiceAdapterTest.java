@@ -10,7 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.techtrek.customerservice.test_data_provider.CustomerTestDataProvider.buildCustomer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -26,7 +28,7 @@ public class CustomerProfileServiceAdapterTest {
 
     @Test
     public void testShouldSaveCustomer(){
-        Customer customer = CustomerTestDataProvider.buildCustomer();
+        Customer customer = buildCustomer();
 
         customerProfileServiceAdapter.addCustomer(customer);
 
@@ -35,7 +37,7 @@ public class CustomerProfileServiceAdapterTest {
 
     @Test
     public void testShouldUpdateCustomer(){
-        Customer customer = CustomerTestDataProvider.buildCustomer();
+        Customer customer = buildCustomer();
 
         customerProfileServiceAdapter.updateCustomer(customer.getCustomerId(), customer);
 
@@ -47,5 +49,14 @@ public class CustomerProfileServiceAdapterTest {
         List<Customer> customerList = customerProfileServiceAdapter.getCustomer();
 
         assertEquals(0, customerList.size());
+    }
+
+    @Test
+    public void testShouldGetCustomer(){
+        when(customerQueryRepo.getCustomer(anyString())).thenReturn(buildCustomer());
+
+        Customer customer = customerProfileServiceAdapter.getCustomer("mockuser");
+
+        assertNotNull(customer);
     }
 }

@@ -19,3 +19,9 @@
 ```
 mvn io.github.handofgod94:jacoco-cov-badge-maven-plugin:1.1.0:badge
 ```
+
+```
+Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        log.info("CurrentPrincipal Name {}", currentPrincipalName);
+```
