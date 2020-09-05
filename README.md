@@ -4,8 +4,8 @@
 
 ![Travis Report](https://travis-ci.com/shah-smit/techtrek-api.svg?token=ZyViK46ak7tr4QJc1DsR&branch=master)
 
-
 ![CodeCov](coverage.svg)
+
 ###### Ref:
 
 - `scp -i awskeys.pem customerservice-1.0.0.jar ec2-user@ec2-18-141-233-93.ap-southeast-1.compute.amazonaws.com:~/`
