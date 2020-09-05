@@ -15,31 +15,13 @@ public enum PricingPlan implements Limit {
         public Bandwidth getLimit() {
             return Bandwidth.classic(20, Refill.intervally(20, Duration.ofMinutes(1)));
         }
-    },
-    BASIC {
-        @Override
-        public Bandwidth getLimit() {
-            return Bandwidth.classic(20, Refill.intervally(20, Duration.ofMinutes(1)));
-        }
-    },
-    PROFESSIONAL {
-        @Override
-        public Bandwidth getLimit() {
-            return Bandwidth.classic(20, Refill.intervally(20, Duration.ofMinutes(1)));
-        }
     };
 
     public static PricingPlan resolvePlanFromApiKey(String apiKey) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         log.info("CurrentPrincipal Name {}", currentPrincipalName);
-        if (apiKey == null || apiKey.isEmpty()) {
-            return FREE;
-        } else if (apiKey.startsWith("PX001-")) {
-            return PROFESSIONAL;
-        } else if (apiKey.startsWith("BX001-")) {
-            return BASIC;
-        }
+
         return FREE;
     }
 }

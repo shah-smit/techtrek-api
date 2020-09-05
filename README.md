@@ -15,3 +15,7 @@
 - https://gist.github.com/debashisbarman/7892a3b76a42a64f30cfa19f7d56c5b0
 
 - https://github.com/soumilshah1995/AWS-Elastic-Search-and-kibana-Deploy/blob/master/README.md
+
+```
+mvn io.github.handofgod94:jacoco-cov-badge-maven-plugin:1.1.0:badge
+```
