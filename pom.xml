@@ -162,6 +162,12 @@
                                 com.techtrek.customerservice.transaction_resource.TransactionControllerBaseTest
                             </baseClassFQN>
                         </baseClassMapping>
+                        <baseClassMapping>
+                            <contractPackageRegex>.*customer.*</contractPackageRegex>
+                            <baseClassFQN>
+                                com.techtrek.customerservice.customer_resource.CustomerControllerBaseTest
+                            </baseClassFQN>
+                        </baseClassMapping>
                     </baseClassMappings>
                 </configuration>
                 <executions>
