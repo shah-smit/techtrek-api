@@ -2,6 +2,8 @@
 
 ![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API/badge.svg)
 
+![Travis Report](https://travis-ci.com/shah-smit/techtrek-api.svg?token=ZyViK46ak7tr4QJc1DsR&branch=master)
+
 
 ###### Ref:
 
