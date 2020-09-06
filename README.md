@@ -4,7 +4,7 @@ It is a simple [spring-boot](https://spring.io/projects/spring-boot) microservic
 
 ![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API/badge.svg)
 ![Travis Report](https://badgen.net/travis/shah-smit/techtrek-api)
-![CodeCov](https://badgen.net/codecov/c/github/shah-smit/techtrek-api)
+[![codecov](https://codecov.io/gh/shah-smit/techtrek-api/branch/master/graph/badge.svg)](https://codecov.io/gh/shah-smit/techtrek-api)
 ![Tag](https://badgen.net/github/tag/shah-smit/techtrek-api)
 [![BCH compliance](https://bettercodehub.com/edge/badge/shah-smit/techtrek-api?branch=master)](https://bettercodehub.com/)
 
