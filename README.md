@@ -22,7 +22,7 @@ Step 2: Run
 mvn -Dspring.profiles.active=h2-db spring-boot: run
 ```
 
-3) Full documentation of the api-docs can be found [here](api-docs.md)
+Step 3: Full documentation of the api-docs can be found [here](api-docs.md)
 
 ### Contributors
 
