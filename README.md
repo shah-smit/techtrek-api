@@ -1,12 +1,40 @@
-# Tech Trek API
+# Tech Trek 
 
+It is a simple [spring-boot](https://spring.io/projects/spring-boot) microservice
+
+Github Build Status:
 ![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API/badge.svg)
 
+Travis CI Status:
 ![Travis Report](https://travis-ci.com/shah-smit/techtrek-api.svg?token=ZyViK46ak7tr4QJc1DsR&branch=master)
 
+Coverage Report:
 ![CodeCov](coverage.svg)
 
-###### Ref:
+![Tag](https://badgen.net/github/tag/shah-smit/techtrek-api)
+
+### Setup
+
+Step 1: Install Dependencies
+
+```
+mvn install
+```
+
+Step 2: Run
+
+```
+mvn -Dspring.profiles.active=h2-db spring-boot: run
+```
+
+3) Full documentation of the api-docs can be found [here](api-docs.md)
+
+### Contributors
+
+- [@shah-smit](https://github.com/shah-smit)
+
+
+###### Notes:
 
 - `scp -i awskeys.pem customerservice-1.0.0.jar ec2-user@ec2-18-141-233-93.ap-southeast-1.compute.amazonaws.com:~/`
 
@@ -22,6 +50,6 @@ mvn io.github.handofgod94:jacoco-cov-badge-maven-plugin:1.1.0:badge
 
 ```
 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        log.info("CurrentPrincipal Name {}", currentPrincipalName);
+String currentPrincipalName = authentication.getName();
+log.info("CurrentPrincipal Name {}", currentPrincipalName);
 ```
