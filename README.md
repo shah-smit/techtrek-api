@@ -3,7 +3,7 @@
 It is a simple [spring-boot](https://spring.io/projects/spring-boot) microservice
 
 ![Tech Trek API](https://github.com/shah-smit/techtrek-api/workflows/Tech%20Trek%20API/badge.svg)
-![Travis Report](https://travis-ci.com/shah-smit/techtrek-api.svg?token=ZyViK46ak7tr4QJc1DsR&branch=master)
+![Travis Report](https://badgen.net/travis/shah-smit/techtrek-api)
 ![CodeCov](https://badgen.net/codecov/c/github/shah-smit/techtrek-api)
 ![Tag](https://badgen.net/github/tag/shah-smit/techtrek-api)
 [![DeepScan grade](https://deepscan.io/api/teams/10819/projects/13705/branches/237880/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10819&pid=13705&bid=237880)
