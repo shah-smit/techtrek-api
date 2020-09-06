@@ -6,7 +6,7 @@ It is a simple [spring-boot](https://spring.io/projects/spring-boot) microservic
 ![Travis Report](https://badgen.net/travis/shah-smit/techtrek-api)
 ![CodeCov](https://badgen.net/codecov/c/github/shah-smit/techtrek-api)
 ![Tag](https://badgen.net/github/tag/shah-smit/techtrek-api)
-[![DeepScan grade](https://deepscan.io/api/teams/10819/projects/13705/branches/237880/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10819&pid=13705&bid=237880)
+[![BCH compliance](https://bettercodehub.com/edge/badge/shah-smit/techtrek-api?branch=master)](https://bettercodehub.com/)
 
 ### Setup
 
