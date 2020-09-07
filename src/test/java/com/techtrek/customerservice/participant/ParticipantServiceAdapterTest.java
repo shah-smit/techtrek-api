@@ -2,6 +2,8 @@ package com.techtrek.customerservice.participant;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -29,15 +31,20 @@ public class ParticipantServiceAdapterTest {
     @Mock
     private ParticipantQueryRepo participantQueryRepo;
 
+    @Captor
+    private ArgumentCaptor<Participant> argumentCaptor;
+
     @Test
     public void testShouldAddParticipant(){
         when(passwordService.encode(any())).thenReturn("encodedpassword");
 
         participantServiceAdapter.addParticipant(buildParticipant());
 
-        Participant encodedPasswordParticipant = buildParticipant();
-        encodedPasswordParticipant.setPassword("encodedpassword");
-        verify(participantCommandRepo, times(1)).addParticipant(encodedPasswordParticipant);
+        verify(participantCommandRepo, times(1)).addParticipant(argumentCaptor.capture());
+
+        Participant participant = argumentCaptor.getValue();
+        assertEquals(buildParticipant().getUsername(), participant.getUsername());
+        assertEquals("encodedpassword", participant.getPassword());
     }
 
     @Test

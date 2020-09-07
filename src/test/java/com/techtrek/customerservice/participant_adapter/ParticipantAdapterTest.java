@@ -3,6 +3,8 @@ package com.techtrek.customerservice.participant_adapter;
 import com.techtrek.customerservice.participant.Participant;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -29,6 +31,9 @@ public class ParticipantAdapterTest {
     @Mock
     private ParticipantRepository participantRepository;
 
+    @Captor
+    private ArgumentCaptor<ParticipantEntity> argumentCaptor;
+
     @Test
     @WithMockUser(username = USERNAME)
     public void testShouldAddParticipant(){
@@ -38,7 +43,13 @@ public class ParticipantAdapterTest {
 
         participantRepoAdapter.addParticipant(participant);
 
-        verify(participantRepository, times(1)).save(eq(buildParticipantEntity()));
+        verify(participantRepository, times(1)).save(argumentCaptor.capture());
+
+        ParticipantEntity participantEntity = argumentCaptor.getValue();
+
+        assertEquals(participant.getUsername(), participantEntity.getUsername());
+        assertEquals(participant.getPassword(), participantEntity.getPassword());
+        assertEquals(USERNAME,participantEntity.getAuthenticationId());
     }
 
     @Test
@@ -52,7 +63,8 @@ public class ParticipantAdapterTest {
 
 
         verify(participantRepository, times(1)).findById(participant.getUsername());
-        assertEquals(participant, participant1);
+        assertEquals(participant.getUsername(), participant1.getUsername());
+        assertEquals(participant.getPassword(), participant1.getPassword());
     }
 
     @Test

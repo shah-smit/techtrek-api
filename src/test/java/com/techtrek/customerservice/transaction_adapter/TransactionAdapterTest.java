@@ -3,6 +3,8 @@ package com.techtrek.customerservice.transaction_adapter;
 import com.techtrek.customerservice.transaction.Transaction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -24,12 +26,23 @@ public class TransactionAdapterTest {
     @Mock
     private TransactionRepository transactionRepository;
 
+    @Captor
+    private ArgumentCaptor<TransactionEntity> argumentCaptor;
+
     @Test
     @WithMockUser(username = "Smit")
     public void testShouldAddTransaction(){
         transactionAdapter.addTransaction(buildTransaction());
 
-        verify(transactionRepository, times(1)).save(eq(buildTransactionEntity()));
+        verify(transactionRepository, times(1)).save(argumentCaptor.capture());
+
+        TransactionEntity transactionEntity = argumentCaptor.getValue();
+        assertEquals(buildTransaction().getCustomerId(), transactionEntity.getCustomerId());
+        assertEquals(buildTransaction().getToAccountId(), transactionEntity.getToAccountId());
+        assertEquals(buildTransaction().getFromAccountId(), transactionEntity.getFromAccountId());
+        assertEquals(buildTransaction().getAmount(), transactionEntity.getAmount());
+        assertEquals(buildTransaction().getLocalDateTime(), transactionEntity.getLocalDateTime());
+        assertEquals(buildTransaction().getTransactionId(), transactionEntity.getTransactionId());
     }
 
     @Test

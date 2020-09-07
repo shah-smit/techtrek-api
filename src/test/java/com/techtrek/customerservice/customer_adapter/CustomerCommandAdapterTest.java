@@ -3,6 +3,8 @@ package com.techtrek.customerservice.customer_adapter;
 import com.techtrek.customerservice.customer.Customer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -22,6 +24,9 @@ public class CustomerCommandAdapterTest {
     @Mock
     private CustomerRepository customerRepository;
 
+    @Captor
+    private ArgumentCaptor<CustomerProfileEntity> customerProfileEntityArgumentCaptor;
+
     @Test
     @WithMockUser(username = USERNAME)
     public void testShouldAddCustomerAfterSuccessfullyMapping(){
@@ -31,7 +36,16 @@ public class CustomerCommandAdapterTest {
 
         customerCommandAdapter.addCustomer(customer);
 
-        verify(customerRepository, times(1)).save(eq(buildCustomerProfileEntity()));
+        verify(customerRepository, times(1)).save(customerProfileEntityArgumentCaptor.capture());
+
+        CustomerProfileEntity customerProfileEntity = customerProfileEntityArgumentCaptor.getValue();
+        assertEquals(customer.getAddress(), customerProfileEntity.getAddress());
+        assertEquals(customer.getCustomerId(), customerProfileEntity.getCustomerId());
+        assertEquals(customer.getDateOfBirth(), customerProfileEntity.getDateOfBirth());
+        assertEquals(customer.getFirstName(), customerProfileEntity.getFirstName());
+        assertEquals(customer.getLastName(), customerProfileEntity.getLastName());
+        assertEquals(customer.getJoinedDate(), customerProfileEntity.getJoinedDate());
+        assertEquals(customer.getFullName(), customerProfileEntity.getFullName());
     }
 
     @Test
