@@ -23,6 +23,11 @@ public class CustomerProfileServiceAdapter implements CustomerProfileService {
 
     @Override
     public void addCustomer(Customer customer) {
+        if(customer.getCustomerId() == null) throw new RuntimeException("CustomerId cannot be empty");
+        if(customer.getAddress() == null) throw new RuntimeException("Address cannot be empty");
+        if(customer.getDateOfBirth() == null) throw new RuntimeException("Date of Birth cannot be empty");
+        if(customer.getFirstName() == null) throw new RuntimeException("FirstName cannot be empty");
+        if(customer.getLastName() == null) throw new RuntimeException("LastName cannot be empty");
         customerCommandRepo.addCustomer(customer);
     }
 
