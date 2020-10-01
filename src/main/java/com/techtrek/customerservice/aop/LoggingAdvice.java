@@ -1,5 +1,6 @@
 package com.techtrek.customerservice.aop;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -28,9 +29,11 @@ public class LoggingAdvice {
 
         log.info("Method Invoked {} in class {} with args {}", methodName, className, Arrays.toString(args));
 
+        ObjectMapper mapper = new ObjectMapper();
+
         Object object = proceedingJoinPoint.proceed();
 
-        log.info("Method {} return {}", methodName, object);
+        log.info("Method {} return {}", methodName, mapper.writeValueAsString(object));
 
         return object;
     }
