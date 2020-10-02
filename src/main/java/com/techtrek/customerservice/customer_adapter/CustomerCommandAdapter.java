@@ -20,6 +20,7 @@ public class CustomerCommandAdapter implements CustomerCommandRepo {
 
     @Override
     public void updateCustomer(String customerId, Customer customer) {
+        // To do - Implement later in next release
         throw new RuntimeException("Method Not Implemented");
     }
 
