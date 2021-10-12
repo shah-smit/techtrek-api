@@ -43,6 +43,8 @@ Step 3: Full documentation of the api-docs can be found [here](api-docs.md)
 mvn io.github.handofgod94:jacoco-cov-badge-maven-plugin:1.1.0:badge
 ```
 
+Authentication Modules:
+
 ```
 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 String currentPrincipalName = authentication.getName();
